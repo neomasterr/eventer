@@ -1,0 +1,25 @@
+{
+  "name": "eventer",
+  "version": "1.0.0",
+  "description": "Liteweight EventEmitter JavaScript Class",
+  "main": "eventer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/neomasterr/eventer.git"
+  },
+  "keywords": [
+    "javascript",
+    "eventer",
+    "event-emitter",
+    "dependency-free"
+  ],
+  "author": "neomasterr",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/neomasterr/eventer/issues"
+  },
+  "homepage": "https://github.com/neomasterr/eventer#readme"
+}
