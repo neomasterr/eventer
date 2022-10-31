@@ -5,12 +5,13 @@ import EventerMixin from './mixin';
 *
 * https://github.com/neomasterr/eventer
 */
-function Eventer(events = {}) {
+function Eventer(events = {}, context = null) {
     this.events = {};
+    this.context = context;
 
     if (typeof events == 'object' && events !== null) {
         for (let event in events) {
-            this._listen(event, {callback: events[event]});
+            this.on(event, events[event]);
         }
     }
 }
@@ -20,7 +21,7 @@ function Eventer(events = {}) {
  * @param {String} event   Имя события
  * @param {Object} options Параметры
  */
-Eventer.prototype._listen = function(event, options) {
+Eventer.prototype.__listen = function(event, options) {
     const callbacks = [];
     if (typeof options.callback == 'function') {
         callbacks.push(options.callback);
@@ -52,7 +53,7 @@ Eventer.prototype._listen = function(event, options) {
  * @param {Function} callback Вызываемый метод
  */
 Eventer.prototype.on = function(event, callback) {
-    return this._listen(event, {
+    return this.__listen(event, {
         callback,
     });
 }
@@ -63,7 +64,7 @@ Eventer.prototype.on = function(event, callback) {
  * @param {Function} callback Вызываемый метод
  */
 Eventer.prototype.once = function(event, callback) {
-    return this._listen(event, {
+    return this.__listen(event, {
         once: true,
         callback,
     });
@@ -85,7 +86,7 @@ Eventer.prototype.emit = function(event) {
 
     const interrupted = this.events[event].some(item => {
         // возврат true означает прерывание вызова событий (handled)
-        return item.callback.apply(this, args) === true;
+        return item.callback.apply(this.context, args) === true;
     });
 
     this.events[event] = this.events[event].filter(item => !item.once);

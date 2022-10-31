@@ -1,19 +1,19 @@
 import Eventer from './eventer';
 
 function EventerMixin(events) {
-    this.eventer = new Eventer(events);
+    this.emitter = new Eventer(events, this);
 }
 
 EventerMixin.prototype.on = function() {
-    this.eventer.on.apply(this.eventer, arguments);
+    this.emitter.on.apply(this.emitter, arguments);
 }
 
 EventerMixin.prototype.once = function() {
-    this.eventer.once.apply(this.eventer, arguments);
+    this.emitter.once.apply(this.emitter, arguments);
 }
 
 EventerMixin.prototype.emit = function() {
-    this.eventer.emit.apply(this.eventer, arguments);
+    this.emitter.emit.apply(this.emitter, arguments);
 }
 
 export default EventerMixin;

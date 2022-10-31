@@ -6,7 +6,7 @@ Simple lightweight inheritable dependency free event emitter with minimal footpr
 
 # Example
 ```JAVASCRIPT
-import Eventer from 'eventer';
+import Eventer from '@neomasterr/eventer';
 
 const ev = new Eventer();
 
@@ -22,7 +22,7 @@ ev.emit('init', 'foo', 'bar');
 ///////////////////////////
 // my-super-component.js //
 ///////////////////////////
-import {EventerMixin} from 'eventer';
+import {EventerMixin} from '@neomasterr/eventer';
 
 function MySuperComponent(options = {on: {}}) {
     EventerMixin.call(this, options.on);
